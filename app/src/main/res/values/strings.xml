@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ComposeDemo</string>
+    <string name="title_activity_count">CountActivity</string>
+    <string name="title_activity_hello">HelloActivity</string>
+    <string name="title_activity_android_view_compose">AndroidViewComposeActivity</string>
+    <string name="title_activity_compose_android_view">ComposeAndroidViewActivity</string>
+    <string name="title_activity_example">ExampleActivity</string>
+</resources>
