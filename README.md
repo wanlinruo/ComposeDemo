@@ -106,8 +106,7 @@ fun Greeting(name: String) {
 
 #### @Preview
 
-1.  常用用参数如下：
-
+常用用参数如下：
    1. `name: String`: 为该Preview命名，该名字会在布局预览中显示。
    2. `showBackground: Boolean`: 是否显示背景，true为显示。
    3. `backgroundColor: Long`: 设置背景的颜色。
@@ -117,13 +116,20 @@ fun Greeting(name: String) {
    7. `widthDp: Int`: 在Compose中渲染的最大宽度，单位为dp。
    8. `heightDp: Int`: 在Compose中渲染的最大高度，单位为dp。
 
-2. 上面的参数都是可选参数，还有像背景设置等的参数并不是对实际的App进行设置，只是对Preview中的背景进行设置，为了更容易看清布局。
+上面的参数都是可选参数，还有像背景设置等的参数并不是对实际的App进行设置，只是对Preview中的背景进行设置，为了更容易看清布局。
 
-   `@Preview(showBackground = true) @Composable fun DefaultPreview() {    ComposeDemoTheme {        Greeting("Android")    } }`
+   ```kotlin
+   @Preview(showBackground = true) 
+   @Composable fun DefaultPreview() {    
+     ComposeDemoTheme {        
+       Greeting("Android")    
+     } 
+   }
+   ```
 
    
 
-3. 当更改跟UI相关的代码时，会显示如下图的一个横条通知，点击Build&Refresh即可更新显示所更改代码的UI。
+当更改跟UI相关的代码时，会显示如下图的一个横条通知，点击Build&Refresh即可更新显示所更改代码的UI。
 
 ![img](https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/image2020-12-14_16-39-53.png)
 
@@ -134,10 +140,10 @@ fun Greeting(name: String) {
 ```kotlin
 class MainActivity : AppCompatActivity() {    
   override fun onCreate(savedInstanceState: Bundle?) {        
-    super.onCreate(savedInstanceState)        
-    	setContent {            
-      	Text("Hello world!")        
-    	} 
+  super.onCreate(savedInstanceState)        
+    setContent {            
+      Text("Hello world!")        
+    } 
 }
 ```
 
@@ -220,11 +226,11 @@ fun TestColumnRow() {
 
 所有 Android 应用都有核心界面更新循环，如下所示：
 
-![img](https://developer.android.google.cn/images/jetpack/compose/state-core-update-loop.png)
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1ebf80c62a32470db58fbddc25588f2d~tplv-k3u1fbpfcp-zoom-1.image)
 
 Compose 专为单向数据流而打造。这是一种状态向下流动而事件向上流动的设计。
 
-![img](https://developer.android.google.cn/images/jetpack/compose/state-unidirectional-flow.png)
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/efc46376a6c14887a025c470800e5f38~tplv-k3u1fbpfcp-zoom-1.image)
 
 使用单向数据流的应用的界面更新循环如下所示：
 
@@ -331,10 +337,10 @@ fun ButtonCount(
 
 ```xml
 <androidx.constraintlayout.widget.ConstraintLayout 
-	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"    
     tools:context=".AndroidViewComposeActivity">     
   <TextView        
