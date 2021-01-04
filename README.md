@@ -1,8 +1,8 @@
-目录：![img](http://wiki.tuya-inc.com:7799/plugins/servlet/confluence/placeholder/macro?definition=e3RvY30&locale=zh_CN&version=2)
+目录：<img src="/Users/wanlinruo/Desktop/jetpack-compose-hero.svg" alt="img" style="zoom: 200%;" />
 
 ### 一、简述
 
-​    [Jetpack Compose](https://developer.android.google.cn/jetpack/compose)是Google I/O 2019 发布的Andorid UI框架，它不同于Andorid常见的Xml+命令式Coding的UI开发范式，而是基于Kotlin的DSL实现了一套类似React的声明式UI框架。[Jetpack Compose目前仍然处于Alpha版本](https://developer.android.google.cn/jetpack/androidx/versions)，目标是2020年能够发布稳定的Beta版本。伴随React Native、Flutter等大前端框架的兴起以及Jetpack Compose、SwiftUI等native框架的出现，声明式UI正逐渐成为客户端UI开发的新趋势。
+​		[Jetpack Compose](https://developer.android.google.cn/jetpack/compose)是Google I/O 2019 发布的Andorid UI框架，它不同于Andorid常见的Xml+命令式Coding的UI开发范式，而是基于Kotlin的DSL实现了一套类似React的声明式UI框架。[Jetpack Compose目前仍然处于Alpha版本](https://developer.android.google.cn/jetpack/androidx/versions)，目标是2020年能够发布稳定的Beta版本。伴随React Native、Flutter等大前端框架的兴起以及Jetpack Compose、SwiftUI等native框架的出现，声明式UI正逐渐成为客户端UI开发的新趋势。
 
 特点：
 
@@ -29,21 +29,65 @@
 
 - 配置Kotlin
 
-  `plugins {  id 'org.jetbrains.kotlin.android' version '1.4.0' }`
+  ```groovy
+  plugins {  
+    id 'org.jetbrains.kotlin.android' 
+    version '1.4.0' 
+  }
+  ```
 
   
 
 - 配置Gradle
 
-  `android {    defaultConfig {        ...        minSdkVersion 21    }     buildFeatures {        // Enables Jetpack Compose for this module        compose true    }    ...     // Set both the Java and Kotlin compilers to target Java 8.     compileOptions {        sourceCompatibility JavaVersion.VERSION_1_8        targetCompatibility JavaVersion.VERSION_1_8    }     kotlinOptions {        jvmTarget = "1.8"        useIR = true    }     composeOptions {        kotlinCompilerVersion '1.4.0'        kotlinCompilerExtensionVersion '1.0.0-alpha05'    } }`
+  ```groovy
+  android {    
+    defaultConfig {        
+      ...        
+        minSdkVersion 21    
+    }     
+    buildFeatures {        
+      // Enables Jetpack Compose for this module        
+      compose true    
+    }    ...     
+      // Set both the Java and Kotlin compilers to target Java 8.     
+      compileOptions {        
+        sourceCompatibility 
+        JavaVersion.VERSION_1_8        
+        targetCompatibility JavaVersion.VERSION_1_8    
+      }     
+    kotlinOptions {        
+      jvmTarget = "1.8"        
+      useIR = true    
+    }     
+    composeOptions {        
+      kotlinCompilerVersion '1.4.0'        
+      kotlinCompilerExtensionVersion '1.0.0-alpha05'    
+    } 
+  }
+  ```
 
   
 
 - 添加工具包依赖项
 
-  `dependencies {    implementation 'androidx.compose.ui:ui:1.0.0-alpha05'    // Tooling support (Previews, etc.)    implementation 'androidx.ui:ui-tooling:1.0.0-alpha05'    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)    implementation 'androidx.compose.foundation:foundation:1.0.0-alpha05'    // Material Design    implementation 'androidx.compose.material:material:1.0.0-alpha05'    // Material design icons    implementation 'androidx.compose.material:material-icons-core:1.0.0-alpha05'    implementation 'androidx.compose.material:material-icons-extended:1.0.0-alpha05'    // Integration with observables    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-alpha05'    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-alpha05'     // UI Tests    androidTestImplementation 'androidx.ui:ui-test:1.0.0-alpha05' }`
-
-  
+  ```groovy
+  dependencies {    
+    implementation 'androidx.compose.ui:ui:1.0.0-alpha05'    
+    // Tooling support (Previews, etc.)    
+    implementation 'androidx.ui:ui-tooling:1.0.0-alpha05'    
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)    
+    implementation 'androidx.compose.foundation:foundation:1.0.0-alpha05'    
+    // Material Design    
+    implementation 'androidx.compose.material:material:1.0.0-alpha05'    
+    // Material design icons    
+    implementation 'androidx.compose.material:material-icons-core:1.0.0-alpha05'    
+    implementation 'androidx.compose.material:material-icons-extended:1.0.0-alpha05'    
+    // Integration with observables    
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-alpha05'    
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-alpha05'     
+    // UI Tests    androidTestImplementation 'androidx.ui:ui-test:1.0.0-alpha05' }
+  ```
 
 ### 三、基础使用
 
