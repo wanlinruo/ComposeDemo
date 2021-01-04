@@ -1,4 +1,4 @@
-目录：<img src="/Users/wanlinruo/Desktop/jetpack-compose-hero.svg" alt="img" style="zoom: 200%;" />
+<img src="https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/jetpack-compose-hero.svg" alt="img" style="zoom: 200%;" />
 
 ### 一、简述
 
@@ -125,7 +125,7 @@ fun Greeting(name: String) {
 
 3. 当更改跟UI相关的代码时，会显示如下图的一个横条通知，点击Build&Refresh即可更新显示所更改代码的UI。
 
-![客户端&前端_App & FE > Jetpack Compose UI编程 > image2020-12-14_16-39-53.png](http://wiki.tuya-inc.com:7799/download/attachments/70623382/image2020-12-14_16-39-53.png?version=1&modificationDate=1607935194000&api=v2)
+![img](https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/image2020-12-14_16-39-53.png)
 
 #### setContent
 
@@ -331,16 +331,16 @@ fun ButtonCount(
 
 ```xml
 <androidx.constraintlayout.widget.ConstraintLayout 
-		xmlns:android="http://schemas.android.com/apk/res/android"    
-		xmlns:app="http://schemas.android.com/apk/res-auto" 
-    xmlns:tools="http://schemas.android.com/tools"    
-		android:layout_width="match_parent"    
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
     android:layout_height="match_parent"    
     tools:context=".AndroidViewComposeActivity">     
   <TextView        
-    	android:id="@+id/hello_world"        
-    	android:layout_width="match_parent"        
-    	android:layout_height="wrap_content"        
+      android:id="@+id/hello_world"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:text="Hello Android!"        
       app:layout_constraintTop_toTopOf="parent" />     
   <androidx.compose.ui.platform.ComposeView        
@@ -352,7 +352,8 @@ fun ButtonCount(
       android:id="@+id/compose_view_img"        
       android:layout_width="match_parent"        
       android:layout_height="wrap_content"        
-      app:layout_constraintTop_toBottomOf="@id/compose_view_text" /> </androidx.constraintlayout.widget.ConstraintLayout>
+      app:layout_constraintTop_toBottomOf="@id/compose_view_text" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 
@@ -370,9 +371,9 @@ class AndroidViewComposeActivity : AppCompatActivity() {
     findViewById<ComposeView>(R.id.compose_view_img).setContent {            
       val imageResource = imageResource(id = R.drawable.header)            
       val imageModifier = Modifier.preferredHeight(180.dp)
-      														.fillMaxWidth()
-      														.padding(16.dp)            
-      														.clip(RoundedCornerShape(4.dp))   
+      .fillMaxWidth()
+      .padding(16.dp)
+      .clip(RoundedCornerShape(4.dp))
       
       MaterialTheme {
         Image(                    
@@ -590,5 +591,5 @@ public static final void CounterInner(Composer<?> paramComposer, int paramInt) {
 - [深入详解 Jetpack Compose | 实现原理](https://zhuanlan.zhihu.com/p/270682182)
 - [Jetpack撰写第一原理（背景信息）](http://intelligiblebabble.com/compose-from-first-principles/)
 - [Android 全新 UI 编程](https://juejin.cn/post/6850037262743240717#heading-4)
-- [dex2jar-2.0.zip](#)
-- [jd-gui-osx-1.6.6.tar](#)
+- [dex2jar-2.0.zip](#https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/dex2jar-2.0.zip)
+- [jd-gui-osx-1.6.6.tar](#https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/jd-gui-osx-1.6.6.tar)
