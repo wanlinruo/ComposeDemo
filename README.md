@@ -53,11 +53,12 @@
 
 所有关于构建View的方法都必须添加@Compose的注解才可以。并且@Compose跟协程的Suspend的使用方法比较类似,被@Compose的注解的方法只能在同样被@Comopse注解的方法中才能被调用。
 
+```kotlin
+@Composable 
+fun Greeting(name: String) {    
+  Text(text = "Hello $name!") 
+}
 ```
-@Composable fun Greeting(name: String) {    Text(text = "Hello $name!") }
-```
-
-
 
 #### @Preview
 
@@ -86,8 +87,14 @@
 
 该方法作用是和zaiLayout/View中的setContentView是一样的。setContent的方法也是有@Compose注解的方法。所以，在setContent中写入关于UI的@Compopse方法，即可在Activity中显示。
 
-```
-class MainActivity : AppCompatActivity() {    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        setContent {            Text("Hello world!")        } }
+```kotlin
+class MainActivity : AppCompatActivity() {    
+  override fun onCreate(savedInstanceState: Bundle?) {        
+    super.onCreate(savedInstanceState)        
+    	setContent {            
+      	Text("Hello world!")        
+    	} 
+}
 ```
 
 
@@ -96,8 +103,29 @@ class MainActivity : AppCompatActivity() {    override fun onCreate(savedInstanc
 
 `该类`是各个`Compose`的UI组件一定会用到的一个类。它是被用于设置UI的摆放位置，padding等修饰信息的类。关于`Modifier`相关的设置较多，在这里只介绍会经常用到的。
 
-```
-Modifier.padding(10.dp) // 给上下左右设置成同一个值 Modifier.padding(10.dp, 11.dp, 12.dp, 13.dp) // 分别为上下左右设值 Modifier.padding(10.dp, 11.dp) // 分别为上下和左右设值 Modifier.padding(InnerPadding(10.dp, 11.dp, 12.dp, 13.dp))// 分别为上下左右设值 Modifier.fillMaxHeight() // 填充整个宽度 Modifier.fillMaxHeight() // 填充整个高度 Modifier.fillMaxSize() // 填充整个宽度和高度 Modifier.width(2.dp) // 设置宽度 Modifier.height(3.dp)  // 设置高度 Modifier.size(4.dp, 5.dp) // 设置高度和宽度 Modifier.widthIn(2.dp) // 设置最大宽度 Modifier.heightIn(3.dp) // 设置最大高度 Modifier.sizeIn(4.dp, 5.dp, 6.dp, 7.dp) // 设置最大最小的宽度和高度 Modifier.gravity(Alignment.CenterHorizontally) // 横向居中 Modifier.gravity(Alignment.Start) // 横向居左 Modifier.gravity(Alignment.End) // 横向居右 Modifier.rtl  // 从右到左 Modifier.ltr  // 从左到右 Modifier.plus(otherModifier) // 把otherModifier的信息加入到现有的modifier中 // Modifier的方法都返回Modifier的实例的链式调用，所以只要连续调用想要使用的方法即可。 @Composable fun Greeting(name: String) {    Text(text = "Hello $name!", modifier = Modifier.padding(20.dp).fillMaxWidth()) }
+```kotlin
+Modifier.padding(10.dp) // 给上下左右设置成同一个值 
+Modifier.padding(10.dp, 11.dp, 12.dp, 13.dp) // 分别为上下左右设值 
+Modifier.padding(10.dp, 11.dp) // 分别为上下和左右设值 
+Modifier.padding(InnerPadding(10.dp, 11.dp, 12.dp, 13.dp))// 分别为上下左右设值 
+Modifier.fillMaxHeight() // 填充整个宽度 
+Modifier.fillMaxHeight() // 填充整个高度 
+Modifier.fillMaxSize() // 填充整个宽度和高度 
+Modifier.width(2.dp) // 设置宽度 
+Modifier.height(3.dp)  // 设置高度 
+Modifier.size(4.dp, 5.dp) // 设置高度和宽度 
+Modifier.widthIn(2.dp) // 设置最大宽度 
+Modifier.heightIn(3.dp) // 设置最大高度 
+Modifier.sizeIn(4.dp, 5.dp, 6.dp, 7.dp) // 设置最大最小的宽度和高度
+Modifier.gravity(Alignment.CenterHorizontally) // 横向居中 
+Modifier.gravity(Alignment.Start) // 横向居左 
+Modifier.gravity(Alignment.End) // 横向居右 
+Modifier.rtl  // 从右到左 Modifier.ltr  // 从左到右 
+Modifier.plus(otherModifier) // 把otherModifier的信息加入到现有的modifier中 
+// Modifier的方法都返回Modifier的实例的链式调用，所以只要连续调用想要使用的方法即可。 
+@Composable fun Greeting(name: String) {    
+  Text(text = "Hello $name!", modifier = Modifier.padding(20.dp).fillMaxWidth()) 
+}
 ```
 
 
@@ -106,8 +134,38 @@ Modifier.padding(10.dp) // 给上下左右设置成同一个值 Modifier.padding
 
 Column和Row可以理解为在View/Layout体系中的纵向和横向的ViewGroup
 
-```
-Column( // 控制纵向布局关系 verticalArrangement:Arrangement 	// 控制横向对齐关系 horizontalAlignment:Alignment ) Row( // 控制横向布局关系 horizontalArrangement:Alignment  	// 控制纵向对齐关系 verticalAlignment:Arrangement )  @Composable fun TestColumnRow() {    Column(        modifier = Modifier.fillMaxHeight().background(Color.Yellow),              verticalArrangement = Arrangement.SpaceBetween,        horizontalAlignment = Alignment.Start    ) {        Text(text = "java")        Text(text = "android")        Text(text = "python")    }     Row(        modifier = Modifier.fillMaxWidth().background(Color.LightGray),        verticalAlignment = Alignment.Top,        horizontalArrangement = Arrangement.SpaceBetween    ) {        Text(text = "java")        Text(text = "android")        Text(text = "python")    } } 
+```kotlin
+Column( 
+  verticalArrangement:Arrangement // 控制纵向布局关系 
+  horizontalAlignment:Alignment // 控制横向对齐关系 
+) 
+
+Row( 
+  horizontalArrangement:Alignment // 控制横向布局关系  
+  verticalAlignment:Arrangement // 控制纵向对齐关系
+)  
+
+@Composable 
+fun TestColumnRow() {    
+  Column(        
+    modifier = Modifier.fillMaxHeight().background(Color.Yellow),              
+    verticalArrangement = Arrangement.SpaceBetween,        
+    horizontalAlignment = Alignment.Start    
+  ) {        
+    Text(text = "java")        
+    Text(text = "android")        
+    Text(text = "python")    
+  }     
+  Row(        
+    modifier = Modifier.fillMaxWidth().background(Color.LightGray),        
+    verticalAlignment = Alignment.Top,        
+    horizontalArrangement = Arrangement.SpaceBetween    
+  ) {        
+    Text(text = "java")        
+    Text(text = "android")        
+    Text(text = "python")    
+  } 
+} 
 ```
 
 
@@ -136,8 +194,16 @@ Compose 专为单向数据流而打造。这是一种状态向下流动而事件
 
 举两个例子展示：
 
-```
-//内部状态管理 @Composable fun CounterInner() {    val count = remember { mutableStateOf(0) }    Button(onClick = { count.value += 1 }) {        Text(text = "Count: ${count.value}")    } }
+```kotlin
+//内部状态管理 
+@Composable 
+fun CounterInner() {    
+  val count = remember { mutableStateOf(0) }    
+  Button(onClick = { count.value += 1 }) 
+  {        
+    Text(text = "Count: ${count.value}")    
+  } 
+}
 ```
 
 解释一下上图的数据流情况
@@ -148,8 +214,31 @@ Compose 专为单向数据流而打造。这是一种状态向下流动而事件
 
 显示状态：系统会调用count的观察器，并且界面会显示新状态
 
-```
-//支持其他可观察类型的状态管理 class CountViewModel : ViewModel() {    // LiveData holds state which is observed by the UI    // (state flows down from ViewModel)    private val _count = MutableLiveData(0)    val count: LiveData<Int> = _count     // onNameChanged is an event we're defining that the UI can invoke    // (events flow up from UI)    fun onCountChanged(newCount: Int) {        _count.value = newCount    } } @Composable fun Counter(countViewModel: CountViewModel = viewModel()) {     val observeAsState = countViewModel.count.observeAsState(0)    val count = observeAsState.value     Button(        colors = ButtonConstants.defaultButtonColors(backgroundColor = if (count > 5) Color.Green else Color.White),        onClick = { countViewModel.onCountChanged(count + 1) },    ) {        Text(text = "I've been clicked $count times")    } }
+```kotlin
+//支持其他可观察类型的状态管理 
+class CountViewModel : ViewModel() {    
+  // LiveData holds state which is observed by the UI    
+  // (state flows down from ViewModel)    
+  private val _count = MutableLiveData(0)   
+  val count: LiveData<Int> = _count     
+  // onNameChanged is an event we're defining that the UI can invoke    
+  // (events flow up from UI)    
+  fun onCountChanged(newCount: Int) {        
+    _count.value = newCount    
+  } 
+} 
+
+@Composable 
+fun Counter(countViewModel: CountViewModel = viewModel()) {     
+  val observeAsState = countViewModel.count.observeAsState(0)    
+  val count = observeAsState.value     
+  Button(        
+    colors = ButtonConstants.defaultButtonColors(backgroundColor = if (count > 5) Color.Green else Color.White),        
+    onClick = { countViewModel.onCountChanged(count + 1) },    
+  ) {        
+    Text(text = "I've been clicked $count times")    
+  } 
+}
 ```
 
 解释一下上图的数据流情况
@@ -167,8 +256,25 @@ Compose 专为单向数据流而打造。这是一种状态向下流动而事件
 - 状态提升是一种编程模式，在这种模式下，通过将可组合项中的内部状态替换为参数和事件，将状态移至可组合项的调用方。
 - 状态提升的过程可让您将单向数据流扩展到无状态可组合项。在这些可组合项的单向数据流示意图中，随着更多可组合项与状态交互，状态仍向下流动，而事件向上流动。
 
-```
-@Composable fun Counter(countViewModel: CountViewModel = viewModel()) {     val observeAsState = countViewModel.count.observeAsState(0)    val count = observeAsState.value        ButtonCount(count = count, onCountChanged = { countViewModel.onCountChanged(it) }) } @Composable fun ButtonCount(    /* state */ count: Int,    /* event */ onCountChanged: (Int) -> Unit ) {    Button(        colors = ButtonConstants.defaultButtonColors(backgroundColor = if (count > 5) Color.Green else Color.White),        onClick = { onCountChanged(count + 1) },    ) {        Text(text = "I've been clicked $count times")    } }
+```kotlin
+@Composable 
+fun Counter(countViewModel: CountViewModel = viewModel()) {     
+  val observeAsState = countViewModel.count.observeAsState(0)    
+  val count = observeAsState.value        
+  ButtonCount(count = count, onCountChanged = { countViewModel.onCountChanged(it) }) 
+} 
+
+@Composable 
+fun ButtonCount(    
+  /* state */ count: Int,    
+  /* event */ onCountChanged: (Int) -> Unit ) {    
+  Button(        
+    colors = ButtonConstants.defaultButtonColors(backgroundColor = if (count > 5) Color.Green else Color.White),        
+    onClick = { onCountChanged(count + 1) },    
+  ) {        
+    Text(text = "I've been clicked $count times")    
+  } 
+}
 ```
 
 
@@ -179,28 +285,105 @@ Compose 专为单向数据流而打造。这是一种状态向下流动而事件
 
 如果想使用Compose的情况下，又不想迁移整个应用，可以在xml里面增加ComposeView，类似于占位符，然后在Actviity/fragment中寻找该控件并调用setContent方法即可，在该方法中即可使用compose相关属性
 
-```
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    xmlns:tools="http://schemas.android.com/tools"    android:layout_width="match_parent"    android:layout_height="match_parent"    tools:context=".AndroidViewComposeActivity">     <TextView        android:id="@+id/hello_world"        android:layout_width="match_parent"        android:layout_height="wrap_content"        android:text="Hello Android!"        app:layout_constraintTop_toTopOf="parent" />     <androidx.compose.ui.platform.ComposeView        android:id="@+id/compose_view_text"        android:layout_width="match_parent"        android:layout_height="wrap_content"        app:layout_constraintTop_toBottomOf="@id/hello_world" />     <androidx.compose.ui.platform.ComposeView        android:id="@+id/compose_view_img"        android:layout_width="match_parent"        android:layout_height="wrap_content"        app:layout_constraintTop_toBottomOf="@id/compose_view_text" /> </androidx.constraintlayout.widget.ConstraintLayout>
+```xml
+<androidx.constraintlayout.widget.ConstraintLayout 
+		xmlns:android="http://schemas.android.com/apk/res/android"    
+		xmlns:app="http://schemas.android.com/apk/res-auto" 
+    xmlns:tools="http://schemas.android.com/tools"    
+		android:layout_width="match_parent"    
+    android:layout_height="match_parent"    
+    tools:context=".AndroidViewComposeActivity">     
+  <TextView        
+    	android:id="@+id/hello_world"        
+    	android:layout_width="match_parent"        
+    	android:layout_height="wrap_content"        
+      android:text="Hello Android!"        
+      app:layout_constraintTop_toTopOf="parent" />     
+  <androidx.compose.ui.platform.ComposeView        
+      android:id="@+id/compose_view_text"        
+      android:layout_width="match_parent"        
+      android:layout_height="wrap_content"        
+      app:layout_constraintTop_toBottomOf="@id/hello_world" />     
+  <androidx.compose.ui.platform.ComposeView        
+      android:id="@+id/compose_view_img"        
+      android:layout_width="match_parent"        
+      android:layout_height="wrap_content"        
+      app:layout_constraintTop_toBottomOf="@id/compose_view_text" /> </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 
 
-```
-class AndroidViewComposeActivity : AppCompatActivity() {    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        setContentView(R.layout.activity_android_view_compose)         findViewById<ComposeView>(R.id.compose_view_text).setContent {            MaterialTheme {                Text("Hello Compose!")            }        }         findViewById<ComposeView>(R.id.compose_view_img).setContent {            val imageResource = imageResource(id = R.drawable.header)            val imageModifier = Modifier                .preferredHeight(180.dp)                .fillMaxWidth()                .padding(16.dp)                .clip(RoundedCornerShape(4.dp))            MaterialTheme {                Image(                    bitmap = imageResource,                    modifier = imageModifier,                    contentScale = ContentScale.Crop                )            }        }    } }
+```kotlin
+class AndroidViewComposeActivity : AppCompatActivity() {    
+  override fun onCreate(savedInstanceState: Bundle?) {        
+    super.onCreate(savedInstanceState)        
+    setContentView(R.layout.activity_android_view_compose)         
+    findViewById<ComposeView>(R.id.compose_view_text).setContent {            
+      MaterialTheme {                
+        Text("Hello Compose!")            
+      }        
+    }         
+    findViewById<ComposeView>(R.id.compose_view_img).setContent {            
+      val imageResource = imageResource(id = R.drawable.header)            
+      val imageModifier = Modifier.preferredHeight(180.dp)
+      														.fillMaxWidth()
+      														.padding(16.dp)            
+      														.clip(RoundedCornerShape(4.dp))   
+      
+      MaterialTheme {
+        Image(                    
+          bitmap = imageResource,                    
+          modifier = imageModifier,                    
+          contentScale = ContentScale.Crop                
+        )            
+      }        
+    }    
+  } 
+}
 ```
 
 ##### Compose中的Android View
 
 如果碰到在Compose环境中，想要使用Android的View视图的情况，只需要使用AndroidView函数即可
 
-```
-@Composable fun CustomView() {    val selectedItem = remember { mutableStateOf(0) }     val context = AmbientContext.current     val customView = remember {        // Creates custom view        Button(context).apply {            // Sets up listeners for View -> Compose communication            setOnClickListener {                selectedItem.value += 1            }        }    }     // Adds view to Compose    AndroidView({ customView }) { view ->        // View's been inflated - add logic here if necessary         // As selectedItem is read here, AndroidView will recompose        // whenever the state changes        // Example of Compose -> View communication        view.text = selectedItem.value.toString()    } }
+```kotlin
+@Composable 
+fun CustomView() {    
+  val selectedItem = remember { mutableStateOf(0) }     
+  val context = AmbientContext.current     
+  val customView = remember {        
+    // Creates custom view        
+    Button(context).apply {            
+      // Sets up listeners for View -> Compose communication            
+      setOnClickListener {                
+        selectedItem.value += 1            
+      }        
+    }   
+  }     
+  // Adds view to Compose    
+  AndroidView({ customView }) { 
+    view ->
+    // View's been inflated - add logic here if necessary 
+    // As selectedItem is read here, AndroidView will recompose        
+    // whenever the state changes        
+    // Example of Compose -> View communication        
+    view.text = selectedItem.value.toString()    
+  } 
+}
 ```
 
 如果是需要使用xml的配置情况，也使用AndroidView函数即可
 
-```
-@Composable fun CustomView2() {    val context = AmbientContext.current     val customView = remember {        // Creates custom view        View.inflate(context, R.layout.layout_custom_view, null)    }     AndroidView({ customView }) }
+```kotlin
+@Composable 
+fun CustomView2() {    
+  val context = AmbientContext.current     
+  val customView = remember {        
+    // Creates custom view        
+    View.inflate(context, R.layout.layout_custom_view, null)    
+  }     
+  AndroidView({ customView }) 
+}
 ```
 
 #### 与通用库集成
@@ -209,8 +392,13 @@ class AndroidViewComposeActivity : AppCompatActivity() {    override fun onCreat
 
 从源码可看出，viewmodel函数底层也是通过ViewModelProvider进行获取的
 
-```
-@Composable fun <VM : ViewModel> viewModel(    modelClass: Class<VM>,    key: String? = null,    factory: ViewModelProvider.Factory? = null ): VM = AmbientViewModelStoreOwner.current.get(modelClass, key, factory)
+```kotlin
+@Composable 
+fun <VM : ViewModel> viewModel(    
+  modelClass: Class<VM>,    
+  key: String? = null,    
+  factory: ViewModelProvider.Factory? = null )
+: VM = AmbientViewModelStoreOwner.current.get(modelClass, key, factory)
 ```
 
 ##### 数据流
@@ -223,8 +411,23 @@ Compose也是适配Android主流的基于流的方案，如
 
 在Compose中，LiveData.observeAsState()获取的State对象赋值给Text
 
-```
-@Composable fun HelloScreen(helloViewModel: HelloViewModel = viewModel()) {    // by default, viewModel() follows the Lifecycle as the Activity or Fragment    // that calls HelloScreen(). This lifecycle can be modified by callers of HelloScreen.     // name is the _current_ value of [helloViewModel.name]    // with an initial value of ""    val observeAsState = helloViewModel.name.observeAsState("")     Column {        Text(text = observeAsState.value)        TextField(            value = observeAsState.value,            onValueChange = { helloViewModel.onNameChanged(it) },            label = { Text("Name") }        )    } }
+```kotlin
+@Composable 
+fun HelloScreen(helloViewModel: HelloViewModel = viewModel()) {    
+  // by default, viewModel() follows the Lifecycle as the Activity or Fragment    
+  // that calls HelloScreen(). This lifecycle can be modified by callers of HelloScreen.     
+  // name is the _current_ value of [helloViewModel.name]    
+  // with an initial value of ""    
+  val observeAsState = helloViewModel.name.observeAsState("")     
+  Column {        
+    Text(text = observeAsState.value)        
+    TextField(            
+      value = observeAsState.value,            
+      onValueChange = { helloViewModel.onNameChanged(it) },            
+      label = { Text("Name") }        
+    )    
+  } 
+}
 ```
 
 ##### 异步操作
@@ -241,16 +444,46 @@ Compose通过一系列Effect方法，实现生命周期函数
 
 所以onCommit函数的使用类似于React的useEffect，支持可观察函数
 
-```
-@Suppress("ComposableNaming") @Composable /*inline*/ fun </*reified*/ V1> onCommit(    v1: V1,    /*noinline*/    callback: CommitScope.() -> Unit ) {    remember(v1) { PreCommitScopeImpl(callback) } }
+```kotlin
+@Suppress("ComposableNaming") 
+@Composable 
+/*inline*/ 
+fun </*reified*/ V1> onCommit(    
+  v1: V1,    
+  /*noinline*/    
+  callback: CommitScope.() -> Unit ) {    
+  remember(v1) { PreCommitScopeImpl(callback) } 
+}
 ```
 
 仅当v1发生变化时onCommit才会执行
 
 举个例子使用异步操作
 
-```
-@Composable fun fetchImage(url: String): ImageAsset? {    // Holds our current image, and will be updated by the onCommit lambda below    var image by remember(url) { mutableStateOf<ImageAsset?>(null) }     onCommit(url) {        // This onCommit lambda will be invoked every time url changes         val listener = object : ExampleImageLoader.Listener() {            override fun onSuccess(bitmap: Bitmap) {                // When the image successfully loads, update our image state                image = bitmap.asImageAsset()            }        }         // Now execute the image loader        val imageLoader = ExampleImageLoader.get()        imageLoader.load(url).into(listener)         onDispose {            // If we leave composition, cancel any pending requests            imageLoader.cancel(listener)        }    }     // Return the state-backed image property. Any callers of this function    // will be recomposed once the image finishes loading    return image }
+```kotlin
+@Composable fun fetchImage(url: String): ImageAsset? {    
+  // Holds our current image, and will be updated by the onCommit lambda below    
+  var image by remember(url) { mutableStateOf<ImageAsset?>(null) }     
+  onCommit(url) {        
+    // This onCommit lambda will be invoked every time url changes         
+    val listener = object : ExampleImageLoader.Listener() {            
+      override fun onSuccess(bitmap: Bitmap) {                
+        // When the image successfully loads, update our image state                
+        image = bitmap.asImageAsset()            
+      }        
+    }         
+    // Now execute the image loader        
+    val imageLoader = ExampleImageLoader.get()        
+    imageLoader.load(url).into(listener)         
+    onDispose {            
+      // If we leave composition, cancel any pending requests            
+      imageLoader.cancel(listener)        
+    }    
+  }     
+  // Return the state-backed image property. Any callers of this function    
+  // will be recomposed once the image finishes loading    
+  return image 
+}
 ```
 
 
@@ -259,8 +492,35 @@ Compose通过一系列Effect方法，实现生命周期函数
 
 因为代码是基于Kotlin注解动态生成的，查看方法可以先build一个apk，然后查看其中的classess.dex文件，使用dex2jar转为jar包，然后使用jd-gui进行查看，下图是反编译得到的源码
 
-```
-//CountActivityKt.class->CountActivity->CounterInner(Composer,int):void public static final void CounterInner(Composer<?> paramComposer, int paramInt) {    paramComposer.startRestartGroup(-908461591, "C(CounterInner)47@2322L30,48@2374L20,48@2357L91:CountActivity.kt#ffoge4");    if (paramInt != 0 || !paramComposer.getSkipping()) {      paramComposer.startReplaceableGroup(-3687207, "C(remember):Remember.kt#9igjgp");      Object object = paramComposer.nextSlot();      if (object == SlotTableKt.getEMPTY()) {        object = MutableStateKt.mutableStateOf$default(Integer.valueOf(LiveLiterals$CountActivityKt.INSTANCE.Int$arg-0$call-mutableStateOf$fun-$anonymous$$arg-0$call-remember$val-count$fun-CounterInner()), null, 2, null);        paramComposer.updateValue(object);      }       paramComposer.endReplaceableGroup();      MutableState<Integer> mutableState = (MutableState)object;      paramComposer.startReplaceableGroup(-3686846, "C(remember)P(1):Remember.kt#9igjgp");      boolean bool = paramComposer.changed(mutableState);      object = paramComposer.nextSlot();      if (object == SlotTableKt.getEMPTY() || bool) {        object = new CountActivityKt$CounterInner$1$1(mutableState);        paramComposer.updateValue(object);      }       paramComposer.endReplaceableGroup();      ButtonKt.Button((Function0)object, null, false, null, null, null, null, null, null, (Function3)ComposableLambdaKt.composableLambda(paramComposer, -819892270, true, "C49@2406L36:CountActivity.kt#ffoge4", new CountActivityKt$CounterInner$2(mutableState)), paramComposer, 805306368, 510);    } else {      paramComposer.skipToGroupEnd();    }     ScopeUpdateScope scopeUpdateScope = paramComposer.endRestartGroup();    if (scopeUpdateScope == null)      return;     scopeUpdateScope.updateScope(new CountActivityKt$CounterInner$3(paramInt));  }
+```java
+//CountActivityKt.class->CountActivity->CounterInner(Composer,int):void 
+public static final void CounterInner(Composer<?> paramComposer, int paramInt) {
+ paramComposer.startRestartGroup(-908461591,"C(CounterInner)47@2322L30,48@2374L20,48@2357L91:CountActivity.kt#ffoge4");    
+  if (paramInt != 0 || !paramComposer.getSkipping()) {      
+    paramComposer.startReplaceableGroup(-3687207, "C(remember):Remember.kt#9igjgp");      
+    Object object = paramComposer.nextSlot();      
+    if (object == SlotTableKt.getEMPTY()) {        
+      object = MutableStateKt.mutableStateOf$default(Integer.valueOf(LiveLiterals$CountActivityKt.INSTANCE.Int$arg-0$call-mutableStateOf$fun-$anonymous$$arg-0$call-remember$val-count$fun-CounterInner()), null, 2, null);        paramComposer.updateValue(object);      
+    }       
+    paramComposer.endReplaceableGroup();      
+    MutableState<Integer> mutableState = (MutableState)object;   paramComposer.startReplaceableGroup(-3686846, "C(remember)P(1):Remember.kt#9igjgp");      
+    boolean bool = paramComposer.changed(mutableState);      
+    object = paramComposer.nextSlot();      
+    if (object == SlotTableKt.getEMPTY() || bool) {        
+      object = new CountActivityKt$CounterInner$1$1(mutableState);        
+      paramComposer.updateValue(object);      
+    }       
+    paramComposer.endReplaceableGroup();      
+    ButtonKt
+      .Button((Function0)object, null, false, null, null, null, null, null, null,(Function3)ComposableLambdaKt.composableLambda(paramComposer, -819892270, true, "C49@2406L36:CountActivity.kt#ffoge4",                                                                                                                         new CountActivityKt$CounterInner$2(mutableState)), paramComposer, 805306368, 510);    
+  	} else {      
+    paramComposer.skipToGroupEnd();    
+  	}     
+  	ScopeUpdateScope scopeUpdateScope = paramComposer.endRestartGroup();    
+  if (scopeUpdateScope == null)      
+    return;     
+  scopeUpdateScope.updateScope(new CountActivityKt$CounterInner$3(paramInt));  
+}
 ```
 
 仔细查看源码可知
@@ -287,4 +547,4 @@ Compose通过一系列Effect方法，实现生命周期函数
 - [Jetpack撰写第一原理（背景信息）](http://intelligiblebabble.com/compose-from-first-principles/)
 - [Android 全新 UI 编程](https://juejin.cn/post/6850037262743240717#heading-4)
 - [dex2jar-2.0.zip](#)
-- [jd-gui-osx-1.6.6.tar](
+- [jd-gui-osx-1.6.6.tar](#)
