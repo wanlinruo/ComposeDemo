@@ -1,4 +1,4 @@
-<img src="https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/jetpack-compose-hero.svg" alt="img" style="zoom: 200%;" />
+<img src="https://github.com/wanlinruo/ComposeDemo/raw/master/app/src/main/assets/jetpack-compose-hero.svg" alt="img" width="100%" />
 
 ### 一、简述
 
